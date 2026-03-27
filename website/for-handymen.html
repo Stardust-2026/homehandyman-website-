@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join as a Handyman - HomeHandyman</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #374151;
+            background: #F3F4F6;
+        }
+        
+        /* Navigation */
+        nav {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2563EB;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: #1E3A5F;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #2563EB;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1E3A5F 0%, #2563EB 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Benefits Section */
+        .benefits {
+            padding: 4rem 2rem;
+            background: white;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #1E3A5F;
+            margin-bottom: 3rem;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .benefit-card {
+            text-align: center;
+            padding: 1.5rem;
+        }
+        
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .benefit-card h3 {
+            color: #1E3A5F;
+            margin-bottom: 0.5rem;
+        }
+        
+        .benefit-card p {
+            color: #6B7280;
+        }
+        
+        /* Form Section */
+        .form-section {
+            padding: 4rem 2rem;
+            background: #F3F4F6;
+        }
+        
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .application-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #1E3A5F;
+        }
+        
+        .form-group label .required {
+            color: #EF4444;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #2563EB;
+        }
+        
+        textarea.form-control {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        /* Skills Checklist */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.75rem;
+        }
+        
+        .skill-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .skill-checkbox:hover {
+            border-color: #2563EB;
+            background: #F9FAFB;
+        }
+        
+        .skill-checkbox input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #2563EB;
+        }
+        
+        /* File Upload */
+        .file-upload {
+            border: 2px dashed #E5E7EB;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .file-upload:hover {
+            border-color: #2563EB;
+            background: #F9FAFB;
+        }
+        
+        .file-upload input[type="file"] {
+            display: none;
+        }
+        
+        .file-upload-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .file-upload-text {
+            color: #6B7280;
+            font-size: 0.9rem;
+        }
+        
+        .file-upload-text span {
+            color: #2563EB;
+            font-weight: 600;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .btn-primary {
+            background: #F97316;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #EA580C;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: #2563EB;
+            color: white;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1E3A5F;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        footer p {
+            color: #9CA3AF;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .application-form {
+                padding: 1.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Home<span>Handyman</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="book.html">Book Now</a></li>
+                <li><a href="for-handymen.html">For Handymen</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+            <a href="book.html" class="btn btn-secondary" style="width: auto; padding: 0.75rem 1.5rem; font-size: 1rem;">Book Now</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Join HomeHandyman as a Professional</h1>
+        <p>Get steady jobs, earn more, and grow your business. It's free to join — we only earn when you earn.</p>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="container">
+            <h2 class="section-title">Why Join HomeHandyman?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">💰</div>
+                    <h3>Keep 80% of Earnings</h3>
+                    <p>You earn 80% of every job. No subscription fees, no hidden costs. We only make money when you do.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">📱</div>
+                    <h3>Steady Job Flow</h3>
+                    <p>Access a constant stream of customers looking for your skills. No more hunting for jobs.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🛡️</div>
+                    <h3>Insurance Coverage</h3>
+                    <p>All jobs are covered by our insurance. Work with peace of mind knowing you're protected.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">⭐</div>
+                    <h3>Build Your Reputation</h3>
+                    <p>Get ratings and reviews from satisfied customers. Build a brand that gets you more work.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Form -->
+    <section class="form-section">
+        <div class="form-container">
+            <h2 class="section-title">Apply Now</h2>
+            <form class="application-form" action="#" method="POST" enctype="multipart/form-data">
+                <!-- Personal Information -->
+                <h3 style="color: #1E3A5F; margin-bottom: 1.5rem; border-bottom: 2px solid #E5E7EB; padding-bottom: 0.5rem;">Personal Information</h3>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name <span class="required">*</span></label>
+                        <input type="text" id="firstName" name="firstName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name <span class="required">*</span></label>
+                        <input type="text" id="lastName" name="lastName" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone Number <span class="required">*</span></label>
+                        <input type="tel" id="phone" name="phone" class="form-control" placeholder="+65 XXXX XXXX" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Your Address <span class="required">*</span></label>
+                    <input type="text" id="address" name="address" class="form-control" placeholder="Full address" required>
+                </div>
+
+                <!-- Skills -->
+                <h3 style="color: #1E3A5F; margin: 2rem 0 1.5rem; border-bottom: 2px solid #E5E7EB; padding-bottom: 0.5rem;">Your Skills <span class="required">*</span></h3>
+                
+                <div class="form-group">
+                    <div class="skills-grid">
+                        <label class="skill-checkbox">
+                            <input type="checkbox" name="skills" value="plumbing">
+                            <span>Plumbing</span>
+                        </label>
+                        <label class="skill-checkbox">
+                            <input type="checkbox" name="skills" value="electrical">
+                            <span>Electrical</span>
+                        </label>
+                        <label class="skill-checkbox">
+                            <input type="checkbox" name="skills" value="carpentry">
+                            <span>Carpentry</span>
+                        </label>
+                        <label class="skill-checkbox">
+                            <input type="checkbox" name="skills" value="painting">
+                            <span>Painting</span>
+                        </label>
+                        <label class="skill-checkbox">
+                            <input type="checkbox" name="skills" value="general">
+                            <span>General Repairs</span>
+                        </label>
+                        <label class="skill-checkbox">
+                            <input type="checkbox" name="skills" value="aircon">
+                            <span>Aircon Service</span>
+                        </label>
+                        <label class="skill-checkbox">
+                            <input type="checkbox" name="skills" value="masonry">
+                            <span>Masonry</span>
+                        </label>
+                        <label class="skill-checkbox">
+                            <input type="checkbox" name="skills" value="cleaning">
+                            <span>Cleaning</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Experience -->
+                <h3 style="color: #1E3A5F; margin: 2rem 0 1.5rem; border-bottom: 2px solid #E5E7EB; padding-bottom: 0.5rem;">Experience</h3>
+                
+                <div class="form-group">
+                    <label for="experience">Years of Experience <span class="required">*</span></label>
+                    <select id="experience" name="experience" class="form-control" required>
+                        <option value="">Select...</option>
+                        <option value="0-1">Less than 1 year</option>
+                        <option value="1-3">1-3 years</option>
+                        <option value="3-5">3-5 years</option>
+                        <option value="5-10">5-10 years</option>
+                        <option value="10+">10+ years</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="bio">Tell us about yourself</label>
+                    <textarea id="bio" name="bio" class="form-control" placeholder="Describe your experience, specialties, and why you'd be a great fit for HomeHandyman..."></textarea>
+                </div>
+
+                <!-- Documents -->
+                <h3 style="color: #1E3A5F; margin: 2rem 0 1.5rem; border-bottom: 2px solid #E5E7EB; padding-bottom: 0.5rem;">Documents</h3>
+                
+                <div class="form-group">
+                    <label>NRIC / Work Permit (Front & Back) <span class="required">*</span></label>
+                    <label for="nric" class="file-upload">
+                        <input type="file" id="nric" name="nric" accept="image/*,.pdf" required>
+                        <div class="file-upload-icon">🪪</div>
+                        <div class="file-upload-text">
+                            <span>Upload NRIC/Permit</span><br>
+                            <small>Images or PDF, max 10MB</small>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label>Relevant Certifications (optional)</label>
+                    <label for="certifications" class="file-upload">
+                        <input type="file" id="certifications" name="certifications" accept="image/*,.pdf" multiple>
+                        <div class="file-upload-icon">📜</div>
+                        <div class="file-upload-text">
+                            <span>Upload certifications</span><br>
+                            <small>BCA, BCA, trade certificates, etc.</small>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label>Profile Photo (optional)</label>
+                    <label for="profilePhoto" class="file-upload">
+                        <input type="file" id="profilePhoto" name="profilePhoto" accept="image/*">
+                        <div class="file-upload-icon">📷</div>
+                        <div class="file-upload-text">
+                            <span>Upload photo</span><br>
+                            <small>Professional headshot preferred</small>
+                        </div>
+                    </label>
+                </div>
+
+                <!-- Terms -->
+                <div class="form-group" style="margin-top: 2rem;">
+                    <label class="skill-checkbox" style="border: none; padding: 0;">
+                        <input type="checkbox" name="terms" required>
+                        <span>I agree to the <a href="#" style="color: #2563EB;">Terms of Service</a> and <a href="#" style="color: #2563EB;">Privacy Policy</a> <span class="required">*</span></span>
+                    </label>
+                </div>
+
+                <!-- Submit -->
+                <button type="submit" class="btn btn-primary">Submit Application</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 HomeHandyman. Quality handymen, on demand.</p>
+    </footer>
+
+    <script>
+        // File upload preview
+        document.querySelectorAll('input[type="file"]').forEach(input => {
+            input.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const uploadText = this.parentElement.querySelector('.file-upload-text');
+                    uploadText.innerHTML = `<span>✓ ${file.name}</span><br><small>Click to change</small>`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
