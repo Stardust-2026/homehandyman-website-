@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeHandyman - Quality Handymen, On Demand</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #374151;
+        }
+        
+        /* Navigation */
+        nav {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2563EB;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: #1E3A5F;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #2563EB;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: #F97316;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #EA580C;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: #2563EB;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #1D4ED8;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1E3A5F 0%, #2563EB 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* Trust Badges */
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .badge-icon {
+            width: 24px;
+            height: 24px;
+            background: #10B981;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            padding: 5rem 2rem;
+            background: #F3F4F6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1E3A5F;
+            margin-bottom: 3rem;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .step {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: #2563EB;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+        }
+        
+        .step h3 {
+            color: #1E3A5F;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+        
+        /* Services */
+        .services {
+            padding: 5rem 2rem;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .service-card {
+            background: white;
+            border: 2px solid #E5E7EB;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .service-card:hover {
+            border-color: #2563EB;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(37, 99, 235, 0.1);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .service-card h3 {
+            color: #1E3A5F;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Trust Section */
+        .trust-section {
+            background: #1E3A5F;
+            color: white;
+            padding: 4rem 2rem;
+        }
+        
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .trust-item {
+            text-align: center;
+            padding: 1.5rem;
+        }
+        
+        .trust-item h3 {
+            color: #F97316;
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 5rem 2rem;
+            text-align: center;
+            background: #F3F4F6;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            color: #1E3A5F;
+            margin-bottom: 1rem;
+        }
+        
+        .cta p {
+            font-size: 1.25rem;
+            color: #6B7280;
+            margin-bottom: 2rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1E3A5F;
+            color: white;
+            padding: 3rem 2rem 1rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: #F97316;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section a {
+            color: #CBD5E1;
+            text-decoration: none;
+            line-height: 2;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #374151;
+            color: #9CA3AF;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .trust-badges {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Home<span>Handyman</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="book.html">Book Now</a></li>
+                <li><a href="for-handymen.html">For Handymen</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+            <a href="book.html" class="btn btn-primary">Book Now</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Book a vetted handyman in 60 seconds</h1>
+        <p>Quality handymen for your home. Vetted, insured, and guaranteed.</p>
+        <div class="hero-buttons">
+            <a href="book.html" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2rem;">Get Started</a>
+            <a href="for-handymen.html" class="btn btn-secondary" style="font-size: 1.1rem; padding: 1rem 2rem;">Join as Handyman</a>
+        </div>
+        <div class="trust-badges">
+            <div class="badge">
+                <div class="badge-icon">✓</div>
+                <span>Vetted Professionals</span>
+            </div>
+            <div class="badge">
+                <div class="badge-icon">✓</div>
+                <span>Insured & Guaranteed</span>
+            </div>
+            <div class="badge">
+                <div class="badge-icon">✓</div>
+                <span>30-Min Response</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Book</h3>
+                    <p>Tell us what you need. Choose your service, describe the problem, and pick a time that works for you. Takes just 60 seconds.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Match</h3>
+                    <p>We match you with a vetted handyman in your area. You'll get a confirmation within 30 minutes with your handyman's details.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Done</h3>
+                    <p>Your handyman arrives on time, fixes the problem, and leaves your home spotless. Pay only when the job is done right.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🚿</div>
+                    <h3>Plumbing</h3>
+                    <p>Leaks, clogs, installations, and repairs</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⚡</div>
+                    <h3>Electrical</h3>
+                    <p>Wiring, fixtures, fans, and power issues</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🪚</div>
+                    <h3>Carpentry</h3>
+                    <p>Furniture, cabinets, doors, and woodwork</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎨</div>
+                    <h3>Painting</h3>
+                    <p>Interior, exterior, touch-ups, and murals</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3>General Repairs</h3>
+                    <p>Doors, windows, locks, and fixtures</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">❄️</div>
+                    <h3>Aircon</h3>
+                    <p>Servicing, repairs, and installation</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🧱</div>
+                    <h3>Masonry</h3>
+                    <p>Tiles, cement work, and repairs</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🌿</div>
+                    <h3>Cleaning</h3>
+                    <p>Deep cleaning, post-renovation, and more</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust-section">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Why Choose HomeHandyman?</h2>
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <h3>✓ Background Checked</h3>
+                    <p>Every handyman undergoes thorough identity and background verification before joining our platform.</p>
+                </div>
+                <div class="trust-item">
+                    <h3>✓ Fully Insured</h3>
+                    <p>All jobs are covered by our insurance policy. Your home and belongings are protected.</p>
+                </div>
+                <div class="trust-item">
+                    <h3>✓ Satisfaction Guaranteed</h3>
+                    <p>Not happy with the work? We'll make it right or refund your money. No questions asked.</p>
+                </div>
+                <div class="trust-item">
+                    <h3>✓ Transparent Pricing</h3>
+                    <p>Get upfront quotes before any work begins. No hidden fees, no surprises.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <h2>Ready to get started?</h2>
+        <p>Join thousands of Singapore homeowners who trust HomeHandyman</p>
+        <a href="book.html" class="btn btn-primary" style="font-size: 1.2rem; padding: 1rem 2.5rem;">Book a Handyman Now</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>HomeHandyman</h4>
+                <p style="color: #CBD5E1; line-height: 1.6;">Quality handymen, on demand. Serving Singapore homeowners with vetted, insured professionals.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Plumbing</a></li>
+                    <li><a href="#">Electrical</a></li>
+                    <li><a href="#">Carpentry</a></li>
+                    <li><a href="#">Painting</a></li>
+                    <li><a href="#">Aircon Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="for-handymen.html">Join as Handyman</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">WhatsApp Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 HomeHandyman. All rights reserved. Made with ❤️ in Singapore.</p>
+        </div>
+    </footer>
+</body>
+</html>

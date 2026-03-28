@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - HomeHandyman</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #374151;
+        }
+        
+        /* Navigation */
+        nav {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2563EB;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: #1E3A5F;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #2563EB;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: #F97316;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #EA580C;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1E3A5F 0%, #2563EB 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Story Section */
+        .story {
+            padding: 5rem 2rem;
+            background: white;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .story h2 {
+            font-size: 2rem;
+            color: #1E3A5F;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .story p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: #4B5563;
+        }
+        
+        /* Mission Section */
+        .mission {
+            padding: 5rem 2rem;
+            background: #F3F4F6;
+        }
+        
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .mission-card {
+            text-align: center;
+        }
+        
+        .mission-card h3 {
+            color: #2563EB;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .mission-card p {
+            color: #6B7280;
+        }
+        
+        /* Values Section */
+        .values {
+            padding: 5rem 2rem;
+            background: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #1E3A5F;
+            margin-bottom: 3rem;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .value-card {
+            padding: 2rem;
+            border: 2px solid #E5E7EB;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .value-card:hover {
+            border-color: #2563EB;
+            transform: translateY(-4px);
+        }
+        
+        .value-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .value-card h3 {
+            color: #1E3A5F;
+            margin-bottom: 0.5rem;
+        }
+        
+        .value-card p {
+            color: #6B7280;
+            font-size: 0.95rem;
+        }
+        
+        /* Stats Section */
+        .stats {
+            padding: 4rem 2rem;
+            background: #1E3A5F;
+            color: white;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #F97316;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        /* Team Section */
+        .team {
+            padding: 5rem 2rem;
+            background: #F3F4F6;
+        }
+        
+        .team-intro {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+        
+        .team-intro p {
+            color: #6B7280;
+            font-size: 1.1rem;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 5rem 2rem;
+            background: white;
+            text-align: center;
+        }
+        
+        .contact h2 {
+            font-size: 2rem;
+            color: #1E3A5F;
+            margin-bottom: 1rem;
+        }
+        
+        .contact p {
+            color: #6B7280;
+            margin-bottom: 2rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #374151;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1E3A5F;
+            color: white;
+            padding: 3rem 2rem 1rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: #F97316;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section a {
+            color: #CBD5E1;
+            text-decoration: none;
+            line-height: 2;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #374151;
+            color: #9CA3AF;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Home<span>Handyman</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="book.html">Book Now</a></li>
+                <li><a href="for-handymen.html">For Handymen</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+            <a href="book.html" class="btn btn-primary">Book Now</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>About HomeHandyman</h1>
+        <p>Connecting Singapore homeowners with skilled, vetted handymen. Built on trust, quality, and community.</p>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story">
+        <div class="container">
+            <h2>Our Story</h2>
+            <p>HomeHandyman was born from a simple frustration: finding a reliable handyman in Singapore shouldn't be so hard.</p>
+            <p>We've all been there — a leaking pipe at midnight, a broken aircon in the sweltering heat, or a door that just won't close right. You ask friends for recommendations, scroll through endless listings, and still end up wondering if the person showing up at your door is trustworthy and skilled.</p>
+            <p>That's why we created HomeHandyman. We believe every homeowner deserves access to quality, vetted professionals who show up on time, do the job right, and treat your home with respect.</p>
+            <p>And for the skilled tradespeople who keep our homes running? We believe they deserve fair pay, steady work, and the chance to build a reputation that speaks for itself.</p>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission">
+        <div class="mission-grid">
+            <div class="mission-card">
+                <h3>Our Mission</h3>
+                <p>To make home maintenance effortless for Singapore homeowners while empowering skilled tradespeople to build thriving businesses.</p>
+            </div>
+            <div class="mission-card">
+                <h3>Our Vision</h3>
+                <p>To be Singapore's most trusted platform for home services — where quality meets convenience, and every job is done right.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values">
+        <h2 class="section-title">Our Values</h2>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">🛡️</div>
+                <h3>Trust First</h3>
+                <p>Every handyman is thoroughly vetted. Every job is insured. Your peace of mind is non-negotiable.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">⚡</div>
+                <h3>Speed Matters</h3>
+                <p>Home problems can't wait. We match you with a handyman within 30 minutes, guaranteed.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">💎</div>
+                <h3>Quality Always</h3>
+                <p>We stand behind every job. Not satisfied? We'll make it right or refund your money.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🤝</div>
+                <h3>Fair for All</h3>
+                <p>Handymen keep 80% of earnings. Customers pay fair, transparent prices. Everyone wins.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Vetted Handymen</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">10,000+</div>
+                <div class="stat-label">Jobs Completed</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">4.8★</div>
+                <div class="stat-label">Average Rating</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">30min</div>
+                <div class="stat-label">Avg. Response Time</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team">
+        <div class="container">
+            <h2 class="section-title">Meet the Team</h2>
+            <div class="team-intro">
+                <p>We're a small but passionate team based in Singapore, dedicated to building the future of home services. With backgrounds in tech, operations, and customer service, we're united by one goal: making home maintenance better for everyone.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <h2>Get in Touch</h2>
+        <p>Have questions? We'd love to hear from you.</p>
+        <div class="contact-info">
+            <div class="contact-item">
+                <span>📧</span>
+                <span>hello@homehandyman.sg</span>
+            </div>
+            <div class="contact-item">
+                <span>📱</span>
+                <span>WhatsApp: +65 XXXX XXXX</span>
+            </div>
+            <div class="contact-item">
+                <span>📍</span>
+                <span>Singapore</span>
+            </div>
+        </div>
+        <a href="book.html" class="btn btn-primary">Book a Handyman</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>HomeHandyman</h4>
+                <p style="color: #CBD5E1; line-height: 1.6;">Quality handymen, on demand. Serving Singapore homeowners with vetted, insured professionals.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Plumbing</a></li>
+                    <li><a href="#">Electrical</a></li>
+                    <li><a href="#">Carpentry</a></li>
+                    <li><a href="#">Painting</a></li>
+                    <li><a href="#">Aircon Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="for-handymen.html">Join as Handyman</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">WhatsApp Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 HomeHandyman. All rights reserved. Made with ❤️ in Singapore.</p>
+        </div>
+    </footer>
+</body>
+</html>

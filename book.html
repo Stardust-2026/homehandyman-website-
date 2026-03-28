@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Handyman - HomeHandyman</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #374151;
+            background: #F3F4F6;
+        }
+        
+        /* Navigation */
+        nav {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2563EB;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: #1E3A5F;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #2563EB;
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-top: 2rem;
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: #1E3A5F;
+            margin-bottom: 0.5rem;
+        }
+        
+        .page-header p {
+            color: #6B7280;
+            font-size: 1.1rem;
+        }
+        
+        /* Form Styles */
+        .booking-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #1E3A5F;
+        }
+        
+        .form-group label .required {
+            color: #EF4444;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #2563EB;
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        select.form-control {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236B7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 2.5rem;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .file-upload {
+            border: 2px dashed #E5E7EB;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .file-upload:hover {
+            border-color: #2563EB;
+            background: #F9FAFB;
+        }
+        
+        .file-upload input[type="file"] {
+            display: none;
+        }
+        
+        .file-upload-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .file-upload-text {
+            color: #6B7280;
+        }
+        
+        .file-upload-text span {
+            color: #2563EB;
+            font-weight: 600;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .btn-primary {
+            background: #F97316;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #EA580C;
+            transform: translateY(-2px);
+        }
+        
+        .trust-note {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #6B7280;
+            font-size: 0.9rem;
+        }
+        
+        .trust-note span {
+            margin: 0 0.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1E3A5F;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        footer p {
+            color: #9CA3AF;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .booking-form {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Home<span>Handyman</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="book.html">Book Now</a></li>
+                <li><a href="for-handymen.html">For Handymen</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+            <a href="book.html" class="btn btn-primary" style="width: auto; padding: 0.75rem 1.5rem; font-size: 1rem;">Book Now</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="page-header">
+            <h1>Book a Handyman</h1>
+            <p>Tell us what you need and we'll match you with a vetted professional</p>
+        </div>
+
+        <form class="booking-form" action="#" method="POST" enctype="multipart/form-data">
+            <!-- Service Type -->
+            <div class="form-group">
+                <label for="service">Service Type <span class="required">*</span></label>
+                <select id="service" name="service" class="form-control" required>
+                    <option value="">Select a service...</option>
+                    <option value="plumbing">Plumbing (leaks, clogs, installations)</option>
+                    <option value="electrical">Electrical (wiring, fixtures, fans)</option>
+                    <option value="carpentry">Carpentry (furniture, cabinets, doors)</option>
+                    <option value="painting">Painting (interior, exterior, touch-ups)</option>
+                    <option value="general">General Repairs (doors, windows, locks)</option>
+                    <option value="aircon">Aircon (servicing, repairs, installation)</option>
+                    <option value="masonry">Masonry (tiles, cement work)</option>
+                    <option value="cleaning">Cleaning (deep cleaning, post-renovation)</option>
+                    <option value="other">Other (please describe)</option>
+                </select>
+            </div>
+
+            <!-- Problem Description -->
+            <div class="form-group">
+                <label for="description">Describe the Problem <span class="required">*</span></label>
+                <textarea id="description" name="description" class="form-control" placeholder="Please describe what needs to be fixed or installed. The more details, the better we can match you with the right handyman." required></textarea>
+            </div>
+
+            <!-- Address -->
+            <div class="form-group">
+                <label for="address">Your Address <span class="required">*</span></label>
+                <input type="text" id="address" name="address" class="form-control" placeholder="Enter your full address (block, street, unit number)" required>
+            </div>
+
+            <!-- Date and Time -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="date">Preferred Date <span class="required">*</span></label>
+                    <input type="date" id="date" name="date" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="time">Preferred Time <span class="required">*</span></label>
+                    <select id="time" name="time" class="form-control" required>
+                        <option value="">Select time...</option>
+                        <option value="morning">Morning (9AM - 12PM)</option>
+                        <option value="afternoon">Afternoon (12PM - 5PM)</option>
+                        <option value="evening">Evening (5PM - 8PM)</option>
+                        <option value="anytime">Anytime</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="name">Your Name <span class="required">*</span></label>
+                    <input type="text" id="name" name="name" class="form-control" placeholder="Full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Contact Number <span class="required">*</span></label>
+                    <input type="tel" id="phone" name="phone" class="form-control" placeholder="+65 XXXX XXXX" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address (optional)</label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="your@email.com">
+            </div>
+
+            <!-- Photo Upload -->
+            <div class="form-group">
+                <label>Photo of the Problem (optional)</label>
+                <label for="photo" class="file-upload">
+                    <input type="file" id="photo" name="photo" accept="image/*">
+                    <div class="file-upload-icon">📷</div>
+                    <div class="file-upload-text">
+                        <span>Click to upload</span> or drag and drop<br>
+                        <small>PNG, JPG up to 10MB</small>
+                    </div>
+                </label>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary">Request a Handyman</button>
+
+            <div class="trust-note">
+                <span>🔒 Secure</span>
+                <span>✓ Vetted Pros</span>
+                <span>💰 Transparent Pricing</span>
+            </div>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 HomeHandyman. Quality handymen, on demand.</p>
+    </footer>
+
+    <script>
+        // Set minimum date to today
+        document.getElementById('date').min = new Date().toISOString().split('T')[0];
+
+        // File upload preview
+        document.getElementById('photo').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const uploadText = document.querySelector('.file-upload-text');
+                uploadText.innerHTML = `<span>✓ ${file.name}</span><br><small>Click to change</small>`;
+            }
+        });
+    </script>
+</body>
+</html>
