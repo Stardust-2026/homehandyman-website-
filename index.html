@@ -526,35 +526,39 @@
 
     <!-- Chatbot Widget -->
     <div id="hh-chat-bubble" onclick="toggleChat()" style="position:fixed;bottom:24px;right:24px;width:60px;height:60px;background:#F97316;border-radius:50%;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:center;z-index:9999;font-size:28px;color:white;">💬</div>
-    <div id="hh-chat-window" style="display:none;position:fixed;bottom:96px;right:24px;width:360px;max-height:500px;background:white;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.15);z-index:9999;flex-direction:column;overflow:hidden;font-family:Inter,sans-serif;">
+    <div id="hh-chat-window" style="display:none;position:fixed;bottom:96px;right:24px;width:380px;max-height:520px;background:white;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.15);z-index:9999;flex-direction:column;overflow:hidden;font-family:Inter,sans-serif;">
         <div style="background:#1E3A5F;color:white;padding:16px;display:flex;justify-content:space-between;align-items:center;">
             <div><strong>HomeHandyman</strong><br><span style="font-size:12px;opacity:0.8;">Typically replies in minutes</span></div>
             <span onclick="toggleChat()" style="cursor:pointer;font-size:20px;">✕</span>
         </div>
         <div id="hh-chat-messages" style="flex:1;overflow-y:auto;padding:16px;max-height:340px;min-height:200px;">
-            <div style="background:#F3F4F6;border-radius:12px;padding:12px;margin-bottom:12px;font-size:14px;">👋 Hi! I'm HomeHandyman Assistant.<br><br>How can I help you today?</div>
+            <div style="background:#F3F4F6;border-radius:12px;padding:12px;margin-bottom:12px;font-size:14px;">👋 Hi! I'm HomeHandyman Assistant.<br><br>Tell me what you need help with, or tap a service below.</div>
         </div>
-        <div id="hh-quick-options" style="padding:8px 16px;display:flex;gap:6px;flex-wrap:wrap;">
-            <button onclick="hhSelectService('Plumbing')" style="padding:6px 12px;border:1px solid #E5E7EB;border-radius:20px;background:white;cursor:pointer;font-size:13px;">🚿 Plumbing</button>
-            <button onclick="hhSelectService('Electrical')" style="padding:6px 12px;border:1px solid #E5E7EB;border-radius:20px;background:white;cursor:pointer;font-size:13px;">⚡ Electrical</button>
-            <button onclick="hhSelectService('Painting')" style="padding:6px 12px;border:1px solid #E5E7EB;border-radius:20px;background:white;cursor:pointer;font-size:13px;">🎨 Painting</button>
-            <button onclick="hhSelectService('General Repair')" style="padding:6px 12px;border:1px solid #E5E7EB;border-radius:20px;background:white;cursor:pointer;font-size:13px;">🔧 Repair</button>
+        <div id="hh-quick-options" style="padding:0 12px 8px;display:flex;gap:6px;flex-wrap:wrap;">
+            <button onclick="hhSelectService('Plumbing')" style="padding:6px 10px;border:1px solid #E5E7EB;border-radius:20px;background:white;cursor:pointer;font-size:12px;">🚿 Plumbing</button>
+            <button onclick="hhSelectService('Electrical')" style="padding:6px 10px;border:1px solid #E5E7EB;border-radius:20px;background:white;cursor:pointer;font-size:12px;">⚡ Electrical</button>
+            <button onclick="hhSelectService('Carpentry')" style="padding:6px 10px;border:1px solid #E5E7EB;border-radius:20px;background:white;cursor:pointer;font-size:12px;">🪚 Carpentry</button>
+            <button onclick="hhSelectService('Painting')" style="padding:6px 10px;border:1px solid #E5E7EB;border-radius:20px;background:white;cursor:pointer;font-size:12px;">🎨 Painting</button>
+            <button onclick="hhSelectService('Aircon')" style="padding:6px 10px;border:1px solid #E5E7EB;border-radius:20px;background:white;cursor:pointer;font-size:12px;">❄️ Aircon</button>
+            <button onclick="hhSelectService('Cleaning')" style="padding:6px 10px;border:1px solid #E5E7EB;border-radius:20px;background:white;cursor:pointer;font-size:12px;">🌿 Cleaning</button>
+            <button onclick="hhSelectService('General Repair')" style="padding:6px 10px;border:1px solid #E5E7EB;border-radius:20px;background:white;cursor:pointer;font-size:12px;">🔧 Repair</button>
         </div>
-        <div id="hh-chat-input-area" style="padding:12px;border-top:1px solid #E5E7EB;display:none;">
-            <input id="hh-chat-input" type="text" placeholder="Type here..." onkeypress="if(event.key==='Enter')hhSend()" style="width:100%;padding:10px 14px;border:1px solid #E5E7EB;border-radius:24px;outline:none;font-size:14px;">
+        <div style="padding:12px;border-top:1px solid #E5E7EB;">
+            <input id="hh-chat-input" type="text" placeholder="Type your problem or question..." onkeypress="if(event.key==='Enter')hhSend()" style="width:100%;padding:10px 14px;border:1px solid #E5E7EB;border-radius:24px;outline:none;font-size:14px;">
             <button onclick="hhSend()" style="margin-top:8px;width:100%;padding:10px;background:#F97316;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;">Send</button>
         </div>
     </div>
     <script>
-    var hhStep=0,hhData={service:'',phone:'',issue:''};
+    var hhStep=0,hhData={service:'',phone:'',issue:'',address:''};
     function toggleChat(){var w=document.getElementById('hh-chat-window');w.style.display=w.style.display==='flex'?'none':'flex';}
     function hhAddBot(msg){var d=document.createElement('div');d.style.cssText='background:#F3F4F6;border-radius:12px;padding:12px;margin-bottom:12px;font-size:14px;';d.innerHTML=msg;document.getElementById('hh-chat-messages').appendChild(d);document.getElementById('hh-chat-messages').scrollTop=99999;}
     function hhAddUser(msg){var d=document.createElement('div');d.style.cssText='background:#2563EB;color:white;border-radius:12px;padding:12px;margin-bottom:12px;font-size:14px;margin-left:40px;';d.textContent=msg;document.getElementById('hh-chat-messages').appendChild(d);document.getElementById('hh-chat-messages').scrollTop=99999;}
-    function hhSelectService(s){hhData.service=s;hhAddUser(s);document.getElementById('hh-quick-options').style.display='none';document.getElementById('hh-chat-input-area').style.display='block';hhStep=1;hhAddBot('Got it — <strong>'+s+'</strong>.<br><br>Please describe your issue briefly.');}
-    function hhSend(){var inp=document.getElementById('hh-chat-input');var msg=inp.value.trim();if(!msg)return;inp.value='';hhAddUser(msg);
-    if(hhStep===1){hhData.issue=msg;hhStep=2;hhAddBot('Thanks! What is your contact number?<br><span style="font-size:12px;color:#6B7280;">We will call you to arrange a free onsite visit.</span>');}
-    else if(hhStep===2){hhData.phone=msg;hhStep=3;hhAddBot('Thank you! 📋 Here is your booking summary:<br><br>🔧 Service: <strong>'+hhData.service+'</strong><br>📝 Issue: '+hhData.issue+'<br>📱 Phone: '+hhData.phone+'<br><br>Our team will call you within 30 minutes to arrange a <strong>free onsite visit</strong> and provide a quote.<br><br>Is there anything else?');}
-    else if(hhStep===3){if(msg.toLowerCase().includes('price')||msg.toLowerCase().includes('cost')||msg.toLowerCase().includes('how much')){hhAddBot('We provide accurate quotes after a <strong>free onsite visit</strong>. Our team will call you shortly to arrange a convenient time. No obligation!');}else{hhAddBot('Got it! Our team will reach out to you soon. Have a great day! 👋');hhStep=99;}}}
+    function hhSelectService(s){hhData.service=s;hhAddUser('Need help with '+s);document.getElementById('hh-quick-options').style.display='none';hhStep=1;hhAddBot('Got it — <strong>'+s+'</strong>.<br><br>Please describe your issue briefly.');}
+    function hhSend(){var inp=document.getElementById('hh-chat-input');var msg=inp.value.trim();if(!msg)return;inp.value='';hhAddUser(msg);var m=msg.toLowerCase();
+    if(hhStep===0){hhData.issue=msg;hhStep=1;hhAddBot('Thanks! What is your contact number?');}
+    else if(hhStep===1){hhData.phone=msg;hhStep=2;hhAddBot('What is your address?<br><span style="font-size:12px;color:#6B7280;">Include block, unit, postal code.</span>');}
+    else if(hhStep===2){hhData.address=msg;hhStep=3;hhAddBot('📋 <strong>Booking Summary</strong><br><br>🔧 Service: '+hhData.service+(hhData.service?' ('+hhData.service+')':'')+'<br>📝 Issue: '+hhData.issue+'<br>📱 Phone: '+hhData.phone+'<br>📍 Address: '+hhData.address+'<br><br>We will call you within 30 minutes to arrange a <strong>free onsite visit</strong> and provide a quote.<br><br>📋 <strong>How it works:</strong><br>1. We review your problem<br>2. Free onsite visit → Quote<br>3. You accept → Work done<br>4. Payment after completion');}
+    else if(hhStep>=3){if(m.includes('price')||m.includes('cost')||m.includes('how much')){hhAddBot('We provide accurate quotes after a <strong>free onsite visit</strong>. Our team will call you shortly. No obligation!');}else if(m.includes('accept')||m.includes('confirm')){hhAddBot('Great! We will confirm your booking and send you a handyman details shortly. 🎉');}else{hhAddBot('Our team will reach out to you soon at '+hhData.phone+'. Have a great day! 👋');}}}
     </script>
 </body>
 </html>
